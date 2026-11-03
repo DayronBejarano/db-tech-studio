@@ -7,19 +7,15 @@ import {
   GlowingIcon 
 } from './components/ui/Effects';
 import { 
-  Code2, 
   Sparkles, 
   Building2, 
   Scale, 
   Truck, 
   ExternalLink, 
   Cpu, 
-  ShieldCheck, 
   Rocket, 
-  Zap,
   ArrowRight,
-  CheckCircle2,
-  Globe2
+  CheckCircle2
 } from 'lucide-react';
 
 const DEMOS_COMERCIALES = [
@@ -30,8 +26,7 @@ const DEMOS_COMERCIALES = [
     sector: 'Legal & Corporativo',
     url: 'https://demo-abogados.vercel.app/',
     icon: Scale,
-    color: 'amber',
-    glow: 'rgba(251, 191, 36, 0.2)',
+    glow: 'rgba(251, 191, 36, 0.25)',
     badge: 'Alto Margen B2B',
     descripcion: 'Diseño de alto estatus con tipografía serif cinematográfica, agendamiento privado de consultas y presentación de jurisprudencia corporativa.'
   },
@@ -42,8 +37,7 @@ const DEMOS_COMERCIALES = [
     sector: 'Construcción e Ingeniería',
     url: 'https://demo-constructora-kappa.vercel.app/',
     icon: Building2,
-    color: 'cyan',
-    glow: 'rgba(0, 242, 254, 0.2)',
+    glow: 'rgba(0, 242, 254, 0.25)',
     badge: 'Proyectos de Gran Volumen',
     descripcion: 'Vitrina interactiva de proyectos residenciales e industriales, visualizador de avance de obra y cotizador comercial integrado.'
   },
@@ -54,8 +48,7 @@ const DEMOS_COMERCIALES = [
     sector: 'Transporte & Cadena de Suministro',
     url: 'https://demo-logistica-neon.vercel.app/',
     icon: Truck,
-    color: 'orange',
-    glow: 'rgba(249, 115, 22, 0.2)',
+    glow: 'rgba(249, 115, 22, 0.25)',
     badge: 'Operación Industrial',
     descripcion: 'Arquitectura orientada a flotas masivas, indicadores operativos en tiempo real y solicitud directa de fletes corporativos.'
   }
@@ -74,7 +67,7 @@ export const App = () => {
       <AmbientBackground />
 
       {/* NAVBAR */}
-      <header className="relative z-40 border-b border-white/10 bg-slate-950/60 backdrop-blur-xl px-6 py-4">
+      <header className="relative z-40 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-gradient-to-tr from-cyan-500 to-blue-600 p-2.5 rounded-xl text-black font-black text-xl shadow-lg shadow-cyan-500/20">
@@ -116,7 +109,10 @@ export const App = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.15] max-w-5xl mx-auto mb-8"
         >
-          Transformamos Empresas B2B con Plataformas Web de <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400">Estatus Internacional</span>
+          Transformamos Empresas B2B con Plataformas Web de{' '}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400">
+            Estatus Internacional
+          </span>
         </motion.h1>
 
         <motion.p 
@@ -148,7 +144,7 @@ export const App = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {DEMOS_COMERCIALES.map((demo, idx) => (
+          {DEMOS_COMERCIALES.map((demo) => (
             <SpotlightCard key={demo.id} glowColor={demo.glow}>
               <div className="flex items-center justify-between mb-6">
                 <GlowingIcon icon={demo.icon} colorClass="text-cyan-400" bgGlow="bg-cyan-500/20" />
@@ -169,7 +165,7 @@ export const App = () => {
                 href={demo.url}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-white/10 hover:border-cyan-500/40 text-xs font-bold text-cyan-400 flex items-center justify-center gap-2 transition-all group"
+                className="w-full py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-white/10 hover:border-cyan-500/40 text-xs font-bold text-cyan-400 flex items-center justify-center gap-2 transition-all group"
               >
                 <span>Probar Demo En Vivo</span>
                 <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -193,7 +189,7 @@ export const App = () => {
 
             <div className="space-y-4">
               {STACK_TECNOLOGICO.map((st, i) => (
-                <div key={i} className="flex items-start gap-3 bg-slate-950/60 p-4 rounded-xl border border-white/5 backdrop-blur-md">
+                <div key={i} className="flex items-start gap-3 bg-slate-900/50 p-4 rounded-xl border border-white/10 backdrop-blur-md">
                   <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
                   <div>
                     <span className="text-sm font-bold text-white block">{st.nombre}</span>
@@ -206,7 +202,7 @@ export const App = () => {
 
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-blue-600/20 rounded-3xl blur-2xl" />
-            <div className="relative bg-slate-950/80 border border-white/10 rounded-3xl p-8 backdrop-blur-2xl shadow-2xl">
+            <div className="relative bg-slate-900/80 border border-white/15 rounded-3xl p-8 backdrop-blur-2xl shadow-2xl">
               <div className="flex items-center gap-3 mb-6">
                 <Cpu className="w-8 h-8 text-cyan-400" />
                 <div>
@@ -216,15 +212,15 @@ export const App = () => {
               </div>
 
               <div className="space-y-4 font-mono text-xs">
-                <div className="bg-slate-900/90 p-3 rounded-lg border border-white/5 flex justify-between">
-                  <span className="text-slate-400">Tiempo de Carga First Contentful Paint:</span>
+                <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between">
+                  <span className="text-slate-400">Tiempo de Carga FCP:</span>
                   <span className="text-emerald-400 font-bold">0.4s</span>
                 </div>
-                <div className="bg-slate-900/90 p-3 rounded-lg border border-white/5 flex justify-between">
-                  <span className="text-slate-400">Seguridad SSL & DDoSRecovery:</span>
+                <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between">
+                  <span className="text-slate-400">Seguridad SSL & DDoS:</span>
                   <span className="text-cyan-400 font-bold">Grade A+</span>
                 </div>
-                <div className="bg-slate-900/90 p-3 rounded-lg border border-white/5 flex justify-between">
+                <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between">
                   <span className="text-slate-400">Infraestructura Serverless:</span>
                   <span className="text-slate-200 font-bold">Vercel + Supabase</span>
                 </div>
