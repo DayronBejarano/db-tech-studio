@@ -1,299 +1,255 @@
 import React from 'react';
-import { Terminal, Database, Cpu, ChevronRight, CheckCircle2, Code2, Rocket, ArrowRight, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
-import profileImg from './assets/dayron-profile.jpg'; // Importación de tu fotografía profesional
+import { 
+  AmbientBackground, 
+  SpotlightCard, 
+  MagicGlowButton, 
+  GlowingIcon 
+} from './components/ui/Effects';
+import { 
+  Code2, 
+  Sparkles, 
+  Building2, 
+  Scale, 
+  Truck, 
+  ExternalLink, 
+  Cpu, 
+  ShieldCheck, 
+  Rocket, 
+  Zap,
+  ArrowRight,
+  CheckCircle2,
+  Globe2
+} from 'lucide-react';
 
-const App = () => {
-  const fadeUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  };
+const DEMOS_COMERCIALES = [
+  {
+    id: 'abogados',
+    titulo: 'Valenzuela & Asociados',
+    subtitulo: 'Firma Legal Boutique & M&A',
+    sector: 'Legal & Corporativo',
+    url: 'https://demo-abogados.vercel.app/',
+    icon: Scale,
+    color: 'amber',
+    glow: 'rgba(251, 191, 36, 0.2)',
+    badge: 'Alto Margen B2B',
+    descripcion: 'Diseño de alto estatus con tipografía serif cinematográfica, agendamiento privado de consultas y presentación de jurisprudencia corporativa.'
+  },
+  {
+    id: 'constructora',
+    titulo: 'Constructora RINO S.A.S',
+    subtitulo: 'Desarrollos Urbanísticos & Obra Civil',
+    sector: 'Construcción e Ingeniería',
+    url: 'https://demo-constructora-kappa.vercel.app/',
+    icon: Building2,
+    color: 'cyan',
+    glow: 'rgba(0, 242, 254, 0.2)',
+    badge: 'Proyectos de Gran Volumen',
+    descripcion: 'Vitrina interactiva de proyectos residenciales e industriales, visualizador de avance de obra y cotizador comercial integrado.'
+  },
+  {
+    id: 'logistica',
+    titulo: 'LOGIX Cargo & Transport',
+    subtitulo: 'Logística de Carga Pesada & Hidrocarburos',
+    sector: 'Transporte & Cadena de Suministro',
+    url: 'https://demo-logistica-neon.vercel.app/',
+    icon: Truck,
+    color: 'orange',
+    glow: 'rgba(249, 115, 22, 0.2)',
+    badge: 'Operación Industrial',
+    descripcion: 'Arquitectura orientada a flotas masivas, indicadores operativos en tiempo real y solicitud directa de fletes corporativos.'
+  }
+];
 
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
-  };
+const STACK_TECNOLOGICO = [
+  { nombre: 'React 18 & Vite', desc: 'Single Page Applications de ultra-alta velocidad' },
+  { nombre: 'Supabase Cloud', desc: 'Backend Serverless & Base de datos PostgreSQL' },
+  { nombre: 'Tailwind CSS & Framer', desc: 'Interfaces Glassmorphism y micro-animaciones' },
+  { nombre: 'Vercel Edge Network', desc: 'Despliegue global con respuesta <50ms' }
+];
 
+export const App = () => {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-emerald-500 selection:text-white overflow-hidden">
-      
-      {/* NAVEGACIÓN */}
-      <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-2"
-          >
-            <Terminal className="text-slate-900 w-8 h-8" />
-            <span className="font-extrabold text-2xl tracking-tight text-slate-900">DB Tech Studio</span>
-          </motion.div>
-          <motion.button 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' })} 
-            className="hidden md:flex bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-lg font-bold transition-colors shadow-md shadow-emerald-200 items-center gap-2"
-          >
-            <Phone className="w-4 h-4" />
-            Agendar Asesoría
-          </motion.button>
+    <div className="min-h-screen bg-[#07090e] text-slate-100 font-sans relative overflow-hidden selection:bg-cyan-500 selection:text-black">
+      <AmbientBackground />
+
+      {/* NAVBAR */}
+      <header className="relative z-40 border-b border-white/10 bg-slate-950/60 backdrop-blur-xl px-6 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="bg-gradient-to-tr from-cyan-500 to-blue-600 p-2.5 rounded-xl text-black font-black text-xl shadow-lg shadow-cyan-500/20">
+              DB
+            </div>
+            <div>
+              <span className="text-lg font-bold tracking-tight text-white block">DB Tech Studio</span>
+              <span className="text-[10px] text-cyan-400 font-mono tracking-widest uppercase">Software Architecture</span>
+            </div>
+          </div>
+
+          <div className="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+            <a href="#demos" className="hover:text-cyan-400 transition-colors">Portafolio Demos</a>
+            <a href="#stack" className="hover:text-cyan-400 transition-colors">Stack Técnico</a>
+            <a href="#contacto" className="hover:text-cyan-400 transition-colors">Contacto Directo</a>
+          </div>
+
+          <MagicGlowButton onClick={() => window.open('https://wa.me/573100000000', '_blank')} icon={ArrowRight}>
+            Cotizar Proyecto
+          </MagicGlowButton>
         </div>
-      </nav>
+      </header>
 
       {/* HERO SECTION */}
-      <section className="pt-32 pb-20 px-6 md:pt-40 md:pb-32 relative bg-white">
-        <motion.div 
-          className="max-w-5xl mx-auto text-center relative z-10"
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-20 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono mb-8 backdrop-blur-md"
         >
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-sm font-bold mb-8 uppercase tracking-wide">
-            <Rocket className="w-4 h-4 text-emerald-600" />
-            <span>Consultoría y Desarrollo Tecnológico</span>
-          </motion.div>
-          
-          <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-tight text-slate-900">
-            Digitalizamos su empresa para <br className="hidden md:block" />
-            <span className="text-emerald-600">
-              multiplicar su rentabilidad
-            </span>
-          </motion.h1>
-          
-          <motion.p variants={fadeUp} className="text-xl md:text-2xl text-slate-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Diseñamos ecosistemas digitales interactivos, automatizamos procesos y creamos plataformas a medida para que deje de operar manualmente y empiece a escalar.
-          </motion.p>
-          
-          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row justify-center gap-4">
-            <motion.button 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' })} 
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors flex items-center justify-center gap-2 group shadow-lg shadow-emerald-200"
-            >
-              Iniciar Proyecto
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-            <motion.button 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => document.getElementById('servicios').scrollIntoView({ behavior: 'smooth' })} 
-              className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors shadow-lg"
-            >
-              Ver Soluciones
-            </motion.button>
-          </motion.div>
+          <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
+          <span>DESARROLLO WEB CORPORATIVO DE ALTO RENDIMIENTO</span>
+        </motion.div>
+
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.15] max-w-5xl mx-auto mb-8"
+        >
+          Transformamos Empresas B2B con Plataformas Web de <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400">Estatus Internacional</span>
+        </motion.h1>
+
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-slate-400 text-base md:text-xl max-w-3xl mx-auto leading-relaxed mb-12"
+        >
+          Diseñamos y desarrollamos software a la medida para constructoras, firmas boutique de abogados y empresas de logística. Vitrinas digitales de alto impacto preparadas para captar clientes corporativos.
+        </motion.p>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <MagicGlowButton onClick={() => document.getElementById('demos').scrollIntoView({ behavior: 'smooth' })} icon={Rocket}>
+            Explorar Demos Interactivas
+          </MagicGlowButton>
         </motion.div>
       </section>
 
-      {/* PROBLEMA / SOLUCIÓN */}
-      <section className="py-24 bg-slate-50 border-y border-slate-200 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeUp}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-slate-900">El costo operativo de la tecnología obsoleta</h2>
-            <p className="text-slate-600 text-lg md:text-xl">Si su empresa enfrenta estos cuellos de botella, está perdiendo capital y tiempo diariamente.</p>
-          </motion.div>
+      {/* PORTAFOLIO DE DEMOS INTERACTIVAS */}
+      <section id="demos" className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+        <div className="text-center mb-16">
+          <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest block mb-2">Tridente Comercial B2B</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">Plataformas Específicas por Sector</h2>
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-white border border-slate-200 p-8 md:p-10 rounded-2xl shadow-sm"
-            >
-              <h3 className="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3 pb-4 border-b border-slate-100">
-                <span className="bg-red-50 text-red-600 w-10 h-10 rounded-lg flex items-center justify-center text-lg font-bold">✕</span>
-                Modelo Tradicional
-              </h3>
-              <ul className="space-y-5">
-                {['Procesos manuales que consumen horas de su equipo directivo', 'Sistemas desconectados que generan doble trabajo operativo', 'Pérdida de clientes por una experiencia web deficiente', 'Decisiones basadas en intuición, sin tableros de datos reales'].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-slate-700 font-medium text-lg">
-                    <div className="w-2 h-2 rounded-full bg-slate-300 mt-2.5 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-slate-900 p-8 md:p-10 rounded-2xl shadow-xl text-white"
-            >
-              <h3 className="text-2xl font-bold mb-6 flex items-center gap-3 pb-4 border-b border-slate-800">
-                <span className="bg-emerald-500/20 text-emerald-400 w-10 h-10 rounded-lg flex items-center justify-center">
-                  <CheckCircle2 className="w-6 h-6" />
+        <div className="grid md:grid-cols-3 gap-8">
+          {DEMOS_COMERCIALES.map((demo, idx) => (
+            <SpotlightCard key={demo.id} glowColor={demo.glow}>
+              <div className="flex items-center justify-between mb-6">
+                <GlowingIcon icon={demo.icon} colorClass="text-cyan-400" bgGlow="bg-cyan-500/20" />
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">
+                  {demo.badge}
                 </span>
-                La Solución Tecnológica
-              </h3>
-              <ul className="space-y-5">
-                {['Automatización inteligente de flujos de trabajo corporativos', 'Ecosistemas integrados (APIs, Bases de Datos centralizadas)', 'Plataformas web fluidas, rápidas y orientadas a la conversión', 'Arquitecturas escalables para analítica y control total'].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-slate-300 font-medium text-lg">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-1" /> 
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+              </div>
+
+              <span className="text-xs font-mono text-cyan-400 block mb-1">{demo.sector}</span>
+              <h3 className="text-xl font-bold text-white mb-1">{demo.titulo}</h3>
+              <p className="text-xs text-slate-400 font-medium mb-4">{demo.subtitulo}</p>
+              
+              <p className="text-slate-400 text-xs leading-relaxed mb-6">
+                {demo.descripcion}
+              </p>
+
+              <a
+                href={demo.url}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-white/10 hover:border-cyan-500/40 text-xs font-bold text-cyan-400 flex items-center justify-center gap-2 transition-all group"
+              >
+                <span>Probar Demo En Vivo</span>
+                <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </a>
+            </SpotlightCard>
+          ))}
+        </div>
+      </section>
+
+      {/* STACK TÉCNICO & ESTÁNDARES */}
+      <section id="stack" className="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-white/10">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest block mb-2">Ingeniería Senior</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-6">
+              Arquitectura Moderna sin Costos de Infraestructura Innecesarios
+            </h2>
+            <p className="text-slate-400 text-sm leading-relaxed mb-8">
+              Implementamos aplicaciones desacopladas utilizando el ecosistema Jamstack. Tu plataforma cargará de forma instantánea, mantendrá disponibilidad del 99.9% y estará protegida contra ataques convencionales.
+            </p>
+
+            <div className="space-y-4">
+              {STACK_TECNOLOGICO.map((st, i) => (
+                <div key={i} className="flex items-start gap-3 bg-slate-950/60 p-4 rounded-xl border border-white/5 backdrop-blur-md">
+                  <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-sm font-bold text-white block">{st.nombre}</span>
+                    <span className="text-xs text-slate-400">{st.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-blue-600/20 rounded-3xl blur-2xl" />
+            <div className="relative bg-slate-950/80 border border-white/10 rounded-3xl p-8 backdrop-blur-2xl shadow-2xl">
+              <div className="flex items-center gap-3 mb-6">
+                <Cpu className="w-8 h-8 text-cyan-400" />
+                <div>
+                  <h4 className="text-lg font-bold text-white">DB Tech Studio Core</h4>
+                  <p className="text-xs text-slate-400 font-mono">Performance Index 100/100</p>
+                </div>
+              </div>
+
+              <div className="space-y-4 font-mono text-xs">
+                <div className="bg-slate-900/90 p-3 rounded-lg border border-white/5 flex justify-between">
+                  <span className="text-slate-400">Tiempo de Carga First Contentful Paint:</span>
+                  <span className="text-emerald-400 font-bold">0.4s</span>
+                </div>
+                <div className="bg-slate-900/90 p-3 rounded-lg border border-white/5 flex justify-between">
+                  <span className="text-slate-400">Seguridad SSL & DDoSRecovery:</span>
+                  <span className="text-cyan-400 font-bold">Grade A+</span>
+                </div>
+                <div className="bg-slate-900/90 p-3 rounded-lg border border-white/5 flex justify-between">
+                  <span className="text-slate-400">Infraestructura Serverless:</span>
+                  <span className="text-slate-200 font-bold">Vercel + Supabase</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* SERVICIOS */}
-      <section id="servicios" className="py-24 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="text-center mb-20"
-          >
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-slate-900">Infraestructura Digital a Medida</h2>
-            <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto">Desarrollo de software diseñado exclusivamente para resolver problemas de negocio y aumentar su margen operativo.</p>
-          </motion.div>
-
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {[
-              {
-                icon: <Code2 className="w-8 h-8 text-indigo-900" />,
-                title: "Desarrollo Web & Plataformas",
-                desc: "Aplicaciones modernas y ágiles que responden al instante. Optimizadas para retener a sus clientes y generar ventas."
-              },
-              {
-                icon: <Database className="w-8 h-8 text-indigo-900" />,
-                title: "Bases de Datos & Analítica",
-                desc: "Arquitectura de datos y paneles de control (Dashboards) en tiempo real para decisiones directivas inteligentes."
-              },
-              {
-                icon: <Cpu className="w-8 h-8 text-indigo-900" />,
-                title: "Automatización Industrial",
-                desc: "Soluciones de software interconectado para reducir la dependencia del trabajo manual y optimizar recursos."
-              }
-            ].map((service, idx) => (
-              <motion.div 
-                key={idx} 
-                variants={fadeUp}
-                whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                onClick={() => document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' })}
-                className="bg-slate-50 border border-slate-200 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-emerald-200 transition-all group cursor-pointer flex flex-col"
-              >
-                <div className="bg-white border border-slate-200 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
-                  {service.icon}
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-slate-900">{service.title}</h3>
-                <p className="text-slate-600 leading-relaxed mb-8 text-lg">{service.desc}</p>
-                <div className="mt-auto text-emerald-600 font-bold flex items-center gap-2 group-hover:gap-4 transition-all">
-                  Solicitar evaluación <ChevronRight className="w-5 h-5" />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* SOBRE MÍ & CONTACTO */}
-      <section id="contacto" className="bg-indigo-950 text-white py-24 px-6 border-t-8 border-emerald-500">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          
-          {/* COLUMNA IZQUIERDA: FOTO Y BIO */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="flex flex-col gap-8"
-          >
+      {/* FOOTER */}
+      <footer id="contacto" className="relative z-10 border-t border-white/10 bg-slate-950 px-6 py-12">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <div className="bg-blue-600 p-2 rounded-lg text-white font-black text-lg">DB</div>
             <div>
-              <p className="text-emerald-400 font-bold tracking-wider uppercase text-sm mb-4">Dirección Tecnológica</p>
-              <h2 className="text-3xl md:text-5xl font-extrabold mb-2">Ingeniería de Software con <span className="text-emerald-400">Visión de Negocios</span></h2>
+              <span className="text-sm font-bold text-white block">DB Tech Studio</span>
+              <span className="text-xs text-slate-500">Ing. Dayron Bejarano • Director de Tecnología</span>
             </div>
-            
-            <div className="flex flex-col sm:flex-row gap-8 items-center sm:items-start">
-              <img 
-                src={profileImg} 
-                alt="Ing. Dayron Bejarano" 
-                className="w-56 h-56 sm:w-64 sm:h-64 object-cover object-top rounded-2xl shadow-2xl border-4 border-indigo-900/50 shrink-0"
-              />
-              <div className="flex-1 text-center sm:text-left">
-                <p className="text-slate-300 text-lg mb-4 leading-relaxed">
-                  Soy <strong>Dayron Bejarano</strong>, Ingeniero de Sistemas especializado en Desarrollo Tecnológico Empresarial, Analítica de Datos y automatización operativa.
-                </p>
-                <p className="text-slate-300 text-lg mb-6 leading-relaxed">
-                  Fundé <strong>DB Tech Studio</strong> para estructurar soluciones sólidas que dejen de ser un gasto y se conviertan en el principal activo de crecimiento de su organización.
-                </p>
-                
-                <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                  {['React / Node.js', 'Arquitectura Cloud', 'Bases de Datos', 'Consultoría IT'].map((tech, index) => (
-                    <span key={index} className="bg-indigo-900/80 border border-indigo-700 text-indigo-100 py-1.5 px-3 rounded-lg text-xs font-semibold uppercase tracking-wide">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          </div>
 
-          {/* COLUMNA DERECHA: FORMULARIO */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white p-8 md:p-10 rounded-2xl shadow-2xl text-slate-900 border border-slate-200 w-full"
-          >
-            <h3 className="text-2xl font-extrabold mb-2 text-slate-900">Agende su Diagnóstico</h3>
-            <p className="text-slate-600 mb-8 text-lg">Contacto directo a mi WhatsApp corporativo para evaluar la viabilidad técnica de su proyecto.</p>
-            <form className="space-y-6" onSubmit={(e) => {
-              e.preventDefault();
-              const name = e.target.name.value;
-              const project = e.target.project.value;
-              const message = `Estimado Ing. Dayron, le saludo de parte de ${name}. Me interesa evaluar una solución enfocada en: ${project}. ¿Podemos agendar una reunión ejecutiva?`;
-              window.open(`https://wa.me/573104208919?text=${encodeURIComponent(message)}`, '_blank');
-            }}>
-              <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">Su Nombre o Empresa</label>
-                <input type="text" name="name" required className="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3.5 text-slate-900 focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100 transition-all font-medium" placeholder="Ej. Carlos Martínez - Constructora" />
-              </div>
-              <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">Área de Interés Principal</label>
-                <select name="project" className="w-full bg-slate-50 border border-slate-300 rounded-lg px-4 py-3.5 text-slate-900 focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100 transition-all font-medium">
-                  <option value="Plataforma Web / E-commerce">Plataforma Web Institucional</option>
-                  <option value="Automatización de Procesos Internos">Automatización de Procesos Internos</option>
-                  <option value="Desarrollo de Software a Medida">Desarrollo de Software a Medida</option>
-                  <option value="Consultoría / Auditoría Tecnológica">Consultoría / Auditoría Tecnológica</option>
-                </select>
-              </div>
-              <motion.button 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit" 
-                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 px-8 rounded-lg transition-colors mt-4 shadow-lg shadow-emerald-200 flex items-center justify-center gap-2 text-lg"
-              >
-                <Phone className="w-5 h-5" />
-                Contactar por WhatsApp
-              </motion.button>
-            </form>
-          </motion.div>
+          <p className="text-xs text-slate-500">
+            © {new Date().getFullYear()} DB Tech Studio. Todos los derechos reservados.
+          </p>
         </div>
-      </section>
-
+      </footer>
     </div>
   );
 };
