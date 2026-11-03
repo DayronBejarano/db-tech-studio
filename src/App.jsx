@@ -15,7 +15,11 @@ import {
   Cpu, 
   Rocket, 
   ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  Landmark,
+  BrainCircuit,
+  Award,
+  TerminalSquare
 } from 'lucide-react';
 
 const DEMOS_COMERCIALES = [
@@ -55,13 +59,24 @@ const DEMOS_COMERCIALES = [
 ];
 
 const STACK_TECNOLOGICO = [
-  { nombre: 'React 18 & Vite', desc: 'Single Page Applications de ultra-alta velocidad' },
-  { nombre: 'Supabase Cloud', desc: 'Backend Serverless & Base de datos PostgreSQL' },
-  { nombre: 'Tailwind CSS & Framer', desc: 'Interfaces Glassmorphism y micro-animaciones' },
-  { nombre: 'Vercel Edge Network', desc: 'Despliegue global con respuesta <50ms' }
+  { icon: TerminalSquare, nombre: 'React 18 & Python', desc: 'Desarrollo Full Stack y Single Page Applications de ultra-alta velocidad' },
+  { icon: BrainCircuit, nombre: 'Inteligencia Artificial & Datos', desc: 'Automatización con IA, Machine Learning, Analítica Predictiva y Dashboards' },
+  { icon: Landmark, nombre: 'Infraestructura Gubernamental', desc: 'Sistemas seguros adaptados para licitaciones y contratación pública (I+D)' },
+  { icon: Cpu, nombre: 'IoT & Proyectos STEAM', desc: 'Prototipado electrónico (Arduino/ESP32), robótica e innovación tecnológica' }
 ];
 
 export const App = () => {
+  const handleContacto = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const nombre = formData.get('nombre');
+    const entidad = formData.get('entidad');
+    const categoria = formData.get('categoria');
+    
+    const mensaje = `Hola Ing. Dayron. Soy ${nombre} de ${entidad}.%0A%0AEstoy interesado en la categoría: *${categoria}*.%0A%0A¿Podemos agendar una asesoría técnica para revisar los requerimientos de este proyecto?`;
+    window.open(`https://wa.me/573100000000?text=${mensaje}`, '_blank'); // Reemplaza con tu número
+  };
+
   return (
     <div className="min-h-screen bg-[#07090e] text-slate-100 font-sans relative overflow-hidden selection:bg-cyan-500 selection:text-black">
       <AmbientBackground />
@@ -75,18 +90,18 @@ export const App = () => {
             </div>
             <div>
               <span className="text-lg font-bold tracking-tight text-white block">DB Tech Studio</span>
-              <span className="text-[10px] text-cyan-400 font-mono tracking-widest uppercase">Software Architecture</span>
+              <span className="text-[10px] text-cyan-400 font-mono tracking-widest uppercase">Arquitectura & IA</span>
             </div>
           </div>
 
           <div className="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-400 uppercase tracking-wider">
-            <a href="#demos" className="hover:text-cyan-400 transition-colors">Portafolio Demos</a>
+            <a href="#demos" className="hover:text-cyan-400 transition-colors">Portafolio</a>
             <a href="#stack" className="hover:text-cyan-400 transition-colors">Stack Técnico</a>
-            <a href="#contacto" className="hover:text-cyan-400 transition-colors">Contacto Directo</a>
+            <a href="#director" className="hover:text-cyan-400 transition-colors">Dirección & Contacto</a>
           </div>
 
-          <MagicGlowButton onClick={() => window.open('https://wa.me/573100000000', '_blank')} icon={ArrowRight}>
-            Cotizar Proyecto
+          <MagicGlowButton onClick={() => document.getElementById('director').scrollIntoView({ behavior: 'smooth' })} icon={ArrowRight}>
+            Cotizar Requerimiento
           </MagicGlowButton>
         </div>
       </header>
@@ -99,8 +114,8 @@ export const App = () => {
           transition={{ duration: 0.6 }}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono mb-8 backdrop-blur-md"
         >
-          <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
-          <span>DESARROLLO WEB CORPORATIVO DE ALTO RENDIMIENTO</span>
+          <Landmark className="w-4 h-4 text-cyan-400" />
+          <span>SOLUCIONES CORPORATIVAS Y LICITACIONES GUBERNAMENTALES</span>
         </motion.div>
 
         <motion.h1 
@@ -109,9 +124,9 @@ export const App = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.15] max-w-5xl mx-auto mb-8"
         >
-          Transformamos Empresas B2B con Plataformas Web de{' '}
+          Transformamos Instituciones y Empresas B2B con{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400">
-            Estatus Internacional
+            Ingeniería de Élite
           </span>
         </motion.h1>
 
@@ -121,7 +136,7 @@ export const App = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-slate-400 text-base md:text-xl max-w-3xl mx-auto leading-relaxed mb-12"
         >
-          Diseñamos y desarrollamos software a la medida para constructoras, firmas boutique de abogados y empresas de logística. Vitrinas digitales de alto impacto preparadas para captar clientes corporativos.
+          Diseñamos arquitecturas de software, ecosistemas de Inteligencia Artificial y portales institucionales de alto rendimiento. Preparados técnica y jurídicamente para ejecutar contratación pública y privada.
         </motion.p>
 
         <motion.div 
@@ -181,22 +196,27 @@ export const App = () => {
           <div>
             <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest block mb-2">Ingeniería Senior</span>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-6">
-              Arquitectura Moderna sin Costos de Infraestructura Innecesarios
+              Arquitectura Moderna & Procesos de IA
             </h2>
             <p className="text-slate-400 text-sm leading-relaxed mb-8">
-              Implementamos aplicaciones desacopladas utilizando el ecosistema Jamstack. Tu plataforma cargará de forma instantánea, mantendrá disponibilidad del 99.9% y estará protegida contra ataques convencionales.
+              Nuestras soluciones escalan desde portales corporativos hasta sistemas de Inteligencia Artificial para el análisis de datos gubernamentales, garantizando disponibilidad del 99.9% y protección contra ciberataques.
             </p>
 
             <div className="space-y-4">
-              {STACK_TECNOLOGICO.map((st, i) => (
-                <div key={i} className="flex items-start gap-3 bg-slate-900/50 p-4 rounded-xl border border-white/10 backdrop-blur-md">
-                  <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-sm font-bold text-white block">{st.nombre}</span>
-                    <span className="text-xs text-slate-400">{st.desc}</span>
+              {STACK_TECNOLOGICO.map((st, i) => {
+                const Icon = st.icon;
+                return (
+                  <div key={i} className="flex items-start gap-4 bg-slate-900/50 p-4 rounded-xl border border-white/10 backdrop-blur-md">
+                    <div className="bg-slate-950 p-2 rounded-lg border border-white/5">
+                      <Icon className="w-5 h-5 text-cyan-400" />
+                    </div>
+                    <div>
+                      <span className="text-sm font-bold text-white block mb-0.5">{st.nombre}</span>
+                      <span className="text-xs text-slate-400 leading-relaxed">{st.desc}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -212,17 +232,17 @@ export const App = () => {
               </div>
 
               <div className="space-y-4 font-mono text-xs">
-                <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between">
-                  <span className="text-slate-400">Tiempo de Carga FCP:</span>
-                  <span className="text-emerald-400 font-bold">0.4s</span>
+                <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between items-center">
+                  <span className="text-slate-400">Modelos Base de IA:</span>
+                  <span className="text-blue-400 font-bold">NLP & Vision</span>
                 </div>
-                <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between">
-                  <span className="text-slate-400">Seguridad SSL & DDoS:</span>
-                  <span className="text-cyan-400 font-bold">Grade A+</span>
+                <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between items-center">
+                  <span className="text-slate-400">Seguridad Institucional:</span>
+                  <span className="text-cyan-400 font-bold">Grade A+ SSL</span>
                 </div>
-                <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between">
-                  <span className="text-slate-400">Infraestructura Serverless:</span>
-                  <span className="text-slate-200 font-bold">Vercel + Supabase</span>
+                <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between items-center">
+                  <span className="text-slate-400">Stack de Base de Datos:</span>
+                  <span className="text-slate-200 font-bold">PostgreSQL / SQL</span>
                 </div>
               </div>
             </div>
@@ -230,8 +250,96 @@ export const App = () => {
         </div>
       </section>
 
+      {/* SECCIÓN DIRECTOR & CONTACTO CORPORATIVO */}
+      <section id="director" className="relative z-10 bg-slate-950/80 border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Perfil Profesional */}
+          <div>
+            <div className="inline-flex items-center gap-2 mb-6">
+              <Award className="w-5 h-5 text-amber-400" />
+              <span className="text-xs font-mono text-amber-400 uppercase tracking-widest">
+                Dirección Tecnológica
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white leading-tight">
+              Ingeniería de Software con <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Visión de Negocio</span>
+            </h2>
+            <p className="text-slate-300 text-base mb-6 leading-relaxed">
+              Soy <strong>Dayron Andrés Bejarano Pérez</strong>, Ingeniero de Sistemas especialista en Desarrollo Full Stack (React, Python, Java), Analítica Predictiva de Datos y ecosistemas de Innovación (I+D).
+            </p>
+            <p className="text-slate-400 text-sm mb-8 leading-relaxed">
+              He coordinado equipos tecnológicos en instituciones de alto nivel (como ETRAINING S.A.S. y la Universidad Cooperativa de Colombia) liderando proyectos STEAM, IoT e infraestructura de software. DB Tech Studio nace con la capacidad operativa, técnica y legal para ejecutar proyectos del sector privado y licitaciones del gobierno nacional.
+            </p>
+
+            <div className="flex flex-wrap gap-2 mb-8">
+              {['Desarrollo Web & SaaS', 'Inteligencia Artificial', 'Robótica & IoT', 'Analítica de Datos', 'Proyectos STEAM', 'Contratación Pública'].map((skill, idx) => (
+                <span key={idx} className="bg-slate-900 border border-slate-800 text-cyan-300 py-1.5 px-4 rounded-full text-xs font-medium">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Formulario de Cotización Categorizado */}
+          <SpotlightCard className="!p-8 lg:!p-10" glowColor="rgba(0, 242, 254, 0.15)">
+            <h3 className="text-2xl font-bold text-white mb-2">Solicitar Requerimiento</h3>
+            <p className="text-sm text-slate-400 mb-8">Selecciona la categoría de desarrollo o licitación para agendar una consultoría técnica.</p>
+            
+            <form className="space-y-5" onSubmit={handleContacto}>
+              <div>
+                <label className="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Tu Nombre</label>
+                <input 
+                  type="text" 
+                  name="nombre"
+                  required
+                  placeholder="Ej. Ing. Carlos Rodríguez"
+                  className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Empresa / Entidad Gubernamental</label>
+                <input 
+                  type="text" 
+                  name="entidad"
+                  required
+                  placeholder="Ej. Ministerio / Alcaldía / Corporación XYZ"
+                  className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Categoría del Proyecto</label>
+                <select 
+                  name="categoria"
+                  className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors cursor-pointer appearance-none"
+                >
+                  <option value="Desarrollo Web / E-commerce">🌐 Desarrollo Web Institucional / E-commerce</option>
+                  <option value="Automatización e IA Empresarial">🤖 Automatización e IA Empresarial</option>
+                  <option value="Software a Medida / SaaS">💻 Desarrollo de Software a Medida / SaaS</option>
+                  <option value="Tecnología Educativa / STEAM">🎓 Tecnología Educativa / Proyectos STEAM</option>
+                  <option value="Licitación / Contratación Pública">🏛️ Licitación / Requerimiento Público (SECOP)</option>
+                </select>
+              </div>
+              
+              <button 
+                type="submit" 
+                className="w-full relative group inline-flex items-center justify-center overflow-hidden rounded-xl p-[1.5px] font-bold shadow-2xl focus:outline-none mt-4"
+              >
+                <span className="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#10B981_0%,#047857_50%,#10B981_100%)]" />
+                <span className="relative z-10 inline-flex h-full w-full cursor-pointer items-center justify-center gap-2 rounded-[10px] bg-slate-950 px-6 py-4 text-xs font-bold uppercase tracking-wider text-white transition-colors group-hover:bg-emerald-950/80">
+                  Enviar a WhatsApp Directo
+                  <ArrowRight className="w-4 h-4 text-emerald-400 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </button>
+            </form>
+          </SpotlightCard>
+        </div>
+      </section>
+
       {/* FOOTER */}
-      <footer id="contacto" className="relative z-10 border-t border-white/10 bg-slate-950 px-6 py-12">
+      <footer className="relative z-10 border-t border-white/10 bg-slate-950 px-6 py-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="bg-blue-600 p-2 rounded-lg text-white font-black text-lg">DB</div>
@@ -241,8 +349,8 @@ export const App = () => {
             </div>
           </div>
 
-          <p className="text-xs text-slate-500">
-            © {new Date().getFullYear()} DB Tech Studio. Todos los derechos reservados.
+          <p className="text-xs text-slate-500 font-mono">
+            © {new Date().getFullYear()} DB Tech Studio. Capacitados para licitaciones públicas y corporativas.
           </p>
         </div>
       </footer>
