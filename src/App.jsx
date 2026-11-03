@@ -192,14 +192,15 @@ const App = () => {
                 key={idx} 
                 variants={fadeUp}
                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
-                className="bg-slate-50 border border-slate-200 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-emerald-200 transition-all group cursor-pointer"
+                onClick={() => document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' })}
+                className="bg-slate-50 border border-slate-200 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:border-emerald-200 transition-all group cursor-pointer flex flex-col"
               >
                 <div className="bg-white border border-slate-200 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
                   {service.icon}
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-slate-900">{service.title}</h3>
                 <p className="text-slate-600 leading-relaxed mb-8 text-lg">{service.desc}</p>
-                <div className="text-emerald-600 font-bold flex items-center gap-2 group-hover:gap-4 transition-all">
+                <div className="mt-auto text-emerald-600 font-bold flex items-center gap-2 group-hover:gap-4 transition-all">
                   Solicitar evaluación <ChevronRight className="w-5 h-5" />
                 </div>
               </motion.div>
