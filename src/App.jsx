@@ -70,7 +70,7 @@ export const App = () => {
     const entidad = formData.get('entidad');
     const categoria = formData.get('categoria');
     
-    // Aquí puedes cambiar el número por el tuyo en formato internacional, ej: 57310XXXXXXX
+    // Configura aquí tu número real con indicativo, ej: 573100000000
     const mensaje = `Hola Ing. Dayron. Soy ${nombre} de ${entidad}.%0A%0AEstoy interesado en la categoría: *${categoria}*.%0A%0A¿Podemos agendar una asesoría técnica para revisar los requerimientos de este proyecto?`;
     window.open(`https://wa.me/573100000000?text=${mensaje}`, '_blank');
   };
@@ -262,29 +262,39 @@ export const App = () => {
                 </span>
               </div>
               
-              {/* INTEGRACIÓN DE IMAGEN LOCAL CON GLASSMORPHISM */}
-              <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start mb-8 text-center sm:text-left">
-                <div className="relative shrink-0">
-                  <div className="absolute inset-0 bg-cyan-500/20 blur-xl rounded-full animate-pulse" />
-                  <img 
-                    src={profileImg} 
-                    alt="Ing. Dayron Bejarano" 
-                    className="relative w-28 h-28 md:w-32 md:h-32 rounded-full border-2 border-cyan-500/30 object-cover shadow-2xl shadow-cyan-500/20"
-                  />
+              {/* INTEGRACIÓN DE IMAGEN LOCAL CORPORATIVA (MEDIO CUERPO) */}
+              <div className="flex flex-col sm:flex-row gap-8 items-center sm:items-start mb-8 text-center sm:text-left">
+                
+                {/* Contenedor tipo retrato corporativo */}
+                <div className="relative shrink-0 w-48 sm:w-56">
+                  {/* Luz de fondo */}
+                  <div className="absolute inset-0 bg-cyan-500/20 blur-2xl rounded-2xl animate-pulse" />
+                  
+                  {/* Imagen de medio cuerpo */}
+                  <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-cyan-500/20 bg-slate-900">
+                    <img 
+                      src={profileImg} 
+                      alt="Ing. Dayron Bejarano" 
+                      className="w-full h-full object-cover object-top"
+                    />
+                    {/* Gradiente sutil en la parte inferior para fusionar con el fondo */}
+                    <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-slate-900 to-transparent" />
+                  </div>
                 </div>
-                <div>
+
+                <div className="sm:pt-4">
                   <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-2">
                     Ingeniería de Software con <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Visión de Negocio</span>
                   </h2>
-                  <p className="text-cyan-400 font-mono text-xs uppercase tracking-wider">
+                  <p className="text-cyan-400 font-mono text-xs uppercase tracking-wider mb-4">
                     Ing. Dayron Andrés Bejarano Pérez
+                  </p>
+                  <p className="text-slate-300 text-sm leading-relaxed">
+                    Especialista en Desarrollo Full Stack, Analítica Predictiva de Datos y ecosistemas de Innovación.
                   </p>
                 </div>
               </div>
 
-              <p className="text-slate-300 text-base mb-6 leading-relaxed">
-                Especialista en Desarrollo Full Stack (React, Python, Java), Analítica Predictiva de Datos y ecosistemas de Innovación (I+D).
-              </p>
               <p className="text-slate-400 text-sm mb-8 leading-relaxed">
                 He coordinado equipos tecnológicos en instituciones de alto nivel (como ETRAINING S.A.S. y la Universidad Cooperativa de Colombia) liderando proyectos STEAM, IoT e infraestructura de software. DB Tech Studio nace con la capacidad operativa, técnica y legal para ejecutar proyectos del sector privado y licitaciones del gobierno nacional.
               </p>
