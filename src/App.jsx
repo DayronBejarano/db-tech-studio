@@ -72,7 +72,7 @@ export const App = () => {
     
     // Configura aquí tu número real con indicativo, ej: 573100000000
     const mensaje = `Hola Ing. Dayron. Soy ${nombre} de ${entidad}.%0A%0AEstoy interesado en la categoría: *${categoria}*.%0A%0A¿Podemos agendar una asesoría técnica para revisar los requerimientos de este proyecto?`;
-    window.open(`https://wa.me/573100000000?text=${mensaje}`, '_blank');
+    window.open(`https://wa.me/573104208919?text=${mensaje}`, '_blank');
   };
 
   const changeLanguage = (lng) => {
