@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next'; // <-- Importar Hook
+import { useTranslation } from 'react-i18next';
 import { 
   AmbientBackground, 
   SpotlightCard, 
   MagicGlowButton, 
   GlowingIcon,
-  ScrollReveal // <-- Importar ScrollReveal
+  ScrollReveal 
 } from './components/ui/Effects';
 import { 
   Sparkles, Building2, Scale, Truck, ExternalLink, Cpu, 
@@ -58,7 +58,7 @@ const STACK_TECNOLOGICO = [
 ];
 
 export const App = () => {
-  const { t, i18n } = useTranslation(); // <-- Hook de traducciones
+  const { t, i18n } = useTranslation();
 
   const handleContacto = (e) => {
     e.preventDefault();
@@ -68,10 +68,9 @@ export const App = () => {
     const categoria = formData.get('categoria');
     
     const mensaje = `Hola Ing. Dayron. Soy ${nombre} de ${entidad}.%0A%0AEstoy interesado en la categoría: *${categoria}*.%0A%0A¿Podemos agendar una asesoría técnica para revisar los requerimientos de este proyecto?`;
-    window.open(`https://wa.me/573100000000?text=${mensaje}`, '_blank');
+    window.open(`https://wa.me/573100000000?text=${mensaje}`, '_blank'); // Reemplaza con tu número
   };
 
-  // Selector de Idiomas
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
@@ -84,8 +83,9 @@ export const App = () => {
       <header className="relative z-40 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl px-6 py-4 sticky top-0">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="bg-gradient-to-tr from-cyan-500 to-blue-600 p-2.5 rounded-xl text-black font-black text-xl shadow-lg shadow-cyan-500/20">
-              DB
+            {/* INTEGRACIÓN DE LOGO */}
+            <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-cyan-500/20 border border-white/10 bg-slate-900 flex items-center justify-center">
+              <img src="/logo.png" alt="DB Tech Studio Logo" className="w-full h-full object-cover" />
             </div>
             <div>
               <span className="text-lg font-bold tracking-tight text-white block">DB Tech Studio</span>
@@ -183,10 +183,9 @@ export const App = () => {
         </ScrollReveal>
       </section>
 
-      {/* Resto de tu código (STACK TÉCNICO & DIRECTOR) envueltos en <ScrollReveal> */}
+      {/* STACK TÉCNICO & ESTÁNDARES */}
       <section id="stack" className="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-white/10">
         <ScrollReveal>
-          {/* El contenido actual de tu sección Stack Técnico */}
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest block mb-2">Ingeniería Senior</span>
@@ -249,26 +248,44 @@ export const App = () => {
       {/* SECCIÓN DIRECTOR & CONTACTO CORPORATIVO */}
       <section id="director" className="relative z-10 bg-slate-950/80 border-t border-white/10 py-24">
         <ScrollReveal>
-          <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+          <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
             {/* Perfil Profesional */}
             <div>
-              <div className="inline-flex items-center gap-2 mb-6">
+              <div className="inline-flex items-center gap-2 mb-8">
                 <Award className="w-5 h-5 text-amber-400" />
                 <span className="text-xs font-mono text-amber-400 uppercase tracking-widest">
                   Dirección Tecnológica
                 </span>
               </div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white leading-tight">
-                Ingeniería de Software con <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Visión de Negocio</span>
-              </h2>
+              
+              {/* INTEGRACIÓN DE IMAGEN GITHUB CON GLASSMORPHISM */}
+              <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start mb-8 text-center sm:text-left">
+                <div className="relative shrink-0">
+                  <div className="absolute inset-0 bg-cyan-500/20 blur-xl rounded-full animate-pulse" />
+                  <img 
+                    src="https://github.com/DayronBejarano.png" 
+                    alt="Ing. Dayron Bejarano" 
+                    className="relative w-28 h-28 md:w-32 md:h-32 rounded-full border-2 border-cyan-500/30 object-cover shadow-2xl shadow-cyan-500/20"
+                  />
+                </div>
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-2">
+                    Ingeniería de Software con <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Visión de Negocio</span>
+                  </h2>
+                  <p className="text-cyan-400 font-mono text-xs uppercase tracking-wider">
+                    Ing. Dayron Andrés Bejarano Pérez
+                  </p>
+                </div>
+              </div>
+
               <p className="text-slate-300 text-base mb-6 leading-relaxed">
-                Soy <strong>Dayron Andrés Bejarano Pérez</strong>, Ingeniero de Sistemas especialista en Desarrollo Full Stack (React, Python, Java), Analítica Predictiva de Datos y ecosistemas de Innovación (I+D).
+                Especialista en Desarrollo Full Stack (React, Python, Java), Analítica Predictiva de Datos y ecosistemas de Innovación (I+D).
               </p>
               <p className="text-slate-400 text-sm mb-8 leading-relaxed">
                 He coordinado equipos tecnológicos en instituciones de alto nivel (como ETRAINING S.A.S. y la Universidad Cooperativa de Colombia) liderando proyectos STEAM, IoT e infraestructura de software. DB Tech Studio nace con la capacidad operativa, técnica y legal para ejecutar proyectos del sector privado y licitaciones del gobierno nacional.
               </p>
 
-              <div className="flex flex-wrap gap-2 mb-8">
+              <div className="flex flex-wrap gap-2 mb-8 justify-center sm:justify-start">
                 {['Desarrollo Web & SaaS', 'Inteligencia Artificial', 'Robótica & IoT', 'Analítica de Datos', 'Proyectos STEAM', 'Contratación Pública'].map((skill, idx) => (
                   <span key={idx} className="bg-slate-900 border border-slate-800 text-cyan-300 py-1.5 px-4 rounded-full text-xs font-medium">
                     {skill}
