@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { 
   AmbientBackground, 
@@ -9,7 +8,7 @@ import {
   ScrollReveal 
 } from './components/ui/Effects';
 import { 
-  Sparkles, Building2, Scale, Truck, ExternalLink, Cpu, 
+  Building2, Scale, Truck, HeartPulse, ExternalLink, Cpu, 
   Rocket, ArrowRight, Landmark, BrainCircuit, 
   Award, TerminalSquare, Globe2
 } from 'lucide-react';
@@ -36,7 +35,7 @@ const DEMOS_COMERCIALES = [
     sector: 'Construcción e Ingeniería',
     url: 'https://demo-constructora-kappa.vercel.app/',
     icon: Building2,
-    glow: 'rgba(0, 242, 254, 0.25)',
+    glow: 'rgba(6, 182, 212, 0.25)',
     badge: 'Proyectos de Gran Volumen',
     descripcion: 'Vitrina interactiva de proyectos residenciales e industriales, visualizador de avance de obra y cotizador comercial integrado.'
   },
@@ -49,15 +48,26 @@ const DEMOS_COMERCIALES = [
     icon: Truck,
     glow: 'rgba(249, 115, 22, 0.25)',
     badge: 'Operación Industrial',
-    descripcion: 'Arquitectura orientada a flotas masivas, indicadores operativos en tiempo real y solicitud directa de fletes corporativos.'
+    descripcion: 'Arquitectura orientada a flotas masivas, rastreo satelital simulado en tiempo real y solicitud directa de fletes corporativos.'
+  },
+  {
+    id: 'salud',
+    titulo: 'SANATIS Red Médica',
+    subtitulo: 'Ecosistema de Salud, Odontología & Droguería',
+    sector: 'Salud & Medicina Boutique',
+    url: 'https://demo-salud-three.vercel.app/',
+    icon: HeartPulse,
+    glow: 'rgba(52, 211, 153, 0.25)',
+    badge: 'Multi-Especialidad',
+    descripcion: 'Plataforma médica con motor de marca blanca (Clínica, Estética, Pharma), agendamiento dinámico, portal de paciente e integración a droguería express.'
   }
 ];
 
 const STACK_TECNOLOGICO = [
-  { icon: TerminalSquare, nombre: 'React 18 & Python', desc: 'Desarrollo Full Stack y Single Page Applications de ultra-alta velocidad' },
-  { icon: BrainCircuit, nombre: 'Inteligencia Artificial & Datos', desc: 'Automatización con IA, Machine Learning, Analítica Predictiva y Dashboards' },
-  { icon: Landmark, nombre: 'Infraestructura Gubernamental', desc: 'Sistemas seguros adaptados para licitaciones y contratación pública (I+D)' },
-  { icon: Cpu, nombre: 'IoT & Proyectos STEAM', desc: 'Prototipado electrónico (Arduino/ESP32), robótica e innovación tecnológica' }
+  { icon: TerminalSquare, nombre: 'React 18, Vite & Python', desc: 'Desarrollo Full Stack y Single Page Applications de ultra-alta velocidad.' },
+  { icon: BrainCircuit, nombre: 'Inteligencia Artificial & Datos', desc: 'Automatización con IA, Machine Learning, Analítica Predictiva y Dashboards.' },
+  { icon: Landmark, nombre: 'Infraestructura Gubernamental', desc: 'Sistemas seguros adaptados para licitaciones y contratación pública (SECOP I+D).' },
+  { icon: Cpu, nombre: 'IoT & Proyectos STEAM', desc: 'Prototipado electrónico (Arduino/ESP32), robótica e innovación tecnológica.' }
 ];
 
 export const App = () => {
@@ -70,7 +80,6 @@ export const App = () => {
     const entidad = formData.get('entidad');
     const categoria = formData.get('categoria');
     
-    // Configura aquí tu número real con indicativo, ej: 573100000000
     const mensaje = `Hola Ing. Dayron. Soy ${nombre} de ${entidad}.%0A%0AEstoy interesado en la categoría: *${categoria}*.%0A%0A¿Podemos agendar una asesoría técnica para revisar los requerimientos de este proyecto?`;
     window.open(`https://wa.me/573104208919?text=${mensaje}`, '_blank');
   };
@@ -80,14 +89,13 @@ export const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#07090e] text-slate-100 font-sans relative overflow-hidden selection:bg-cyan-500 selection:text-black">
+    <div className="min-h-screen bg-[#06080d] text-slate-100 font-sans relative overflow-hidden selection:bg-cyan-500 selection:text-black">
       <AmbientBackground />
 
       {/* NAVBAR */}
       <header className="relative z-40 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl px-6 py-4 sticky top-0">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* INTEGRACIÓN DE LOGO */}
             <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-cyan-500/20 border border-white/10 bg-slate-900 flex items-center justify-center">
               <img src="/logo.png" alt="DB Tech Studio Logo" className="w-full h-full object-cover" />
             </div>
@@ -98,9 +106,9 @@ export const App = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-400 uppercase tracking-wider">
-            <a href="#demos" className="hover:text-cyan-400 transition-colors">{t('nav.portfolio')}</a>
-            <a href="#stack" className="hover:text-cyan-400 transition-colors">{t('nav.stack')}</a>
-            <a href="#director" className="hover:text-cyan-400 transition-colors">{t('nav.director')}</a>
+            <a href="#demos" className="hover:text-cyan-400 transition-colors">{t('nav.portfolio', 'Portafolio')}</a>
+            <a href="#stack" className="hover:text-cyan-400 transition-colors">{t('nav.stack', 'Capacidades')}</a>
+            <a href="#director" className="hover:text-cyan-400 transition-colors">{t('nav.director', 'Dirección')}</a>
             
             {/* SWITCH DE IDIOMAS */}
             <div className="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-full border border-white/10">
@@ -114,7 +122,7 @@ export const App = () => {
           </div>
 
           <MagicGlowButton onClick={() => document.getElementById('director').scrollIntoView({ behavior: 'smooth' })} icon={ArrowRight} className="hidden md:inline-flex">
-            {t('nav.quote')}
+            {t('nav.quote', 'Cotizar Proyecto')}
           </MagicGlowButton>
         </div>
       </header>
@@ -124,65 +132,68 @@ export const App = () => {
         <ScrollReveal>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono mb-8 backdrop-blur-md">
             <Landmark className="w-4 h-4 text-cyan-400" />
-            <span>{t('hero.badge')}</span>
+            <span>{t('hero.badge', 'Software de Ingeniería & Licitaciones B2B')}</span>
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.15] max-w-5xl mx-auto mb-8">
-            {t('hero.title1')}
+            {t('hero.title1', 'Transformamos Industrias Complejas con ')}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 block sm:inline">
-              {t('hero.title2')}
+              {t('hero.title2', 'Software de Alto Impacto e IA.')}
             </span>
           </h1>
 
           <p className="text-slate-400 text-base md:text-xl max-w-3xl mx-auto leading-relaxed mb-12">
-            {t('hero.desc')}
+            {t('hero.desc', 'Desarrollo de ecosistemas digitales, automatizaciones inteligentes e infraestructura de software para corporaciones y sector público.')}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <MagicGlowButton onClick={() => document.getElementById('demos').scrollIntoView({ behavior: 'smooth' })} icon={Rocket}>
-              {t('hero.btn')}
+              {t('hero.btn', 'Explorar Portafolio B2B')}
             </MagicGlowButton>
           </div>
         </ScrollReveal>
       </section>
 
-      {/* PORTAFOLIO DE DEMOS INTERACTIVAS */}
+      {/* PORTAFOLIO DE DEMOS INTERACTIVAS (4 COLUMNAS RESPONSIVAS) */}
       <section id="demos" className="relative z-10 max-w-7xl mx-auto px-6 py-20">
         <ScrollReveal>
           <div className="text-center mb-16">
-            <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest block mb-2">Tridente Comercial B2B</span>
+            <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest block mb-2">Ecosistema de Prospección B2B</span>
             <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">Plataformas Específicas por Sector</h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {DEMOS_COMERCIALES.map((demo) => (
-              <SpotlightCard key={demo.id} glowColor={demo.glow}>
-                <div className="flex items-center justify-between mb-6">
-                  <GlowingIcon icon={demo.icon} colorClass="text-cyan-400" bgGlow="bg-cyan-500/20" />
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">
-                    {demo.badge}
-                  </span>
-                </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {DEMOS_COMERCIALES.map((demo) => {
+              const IconComp = demo.icon;
+              return (
+                <SpotlightCard key={demo.id} glowColor={demo.glow} className="flex flex-col h-full">
+                  <div className="flex items-center justify-between mb-6">
+                    <GlowingIcon icon={IconComp} colorClass="text-cyan-400" bgGlow="bg-cyan-500/20" />
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300">
+                      {demo.badge}
+                    </span>
+                  </div>
 
-                <span className="text-xs font-mono text-cyan-400 block mb-1">{demo.sector}</span>
-                <h3 className="text-xl font-bold text-white mb-1">{demo.titulo}</h3>
-                <p className="text-xs text-slate-400 font-medium mb-4">{demo.subtitulo}</p>
-                
-                <p className="text-slate-400 text-xs leading-relaxed mb-6">
-                  {demo.descripcion}
-                </p>
+                  <span className="text-xs font-mono text-cyan-400 block mb-1">{demo.sector}</span>
+                  <h3 className="text-xl font-bold text-white mb-1">{demo.titulo}</h3>
+                  <p className="text-xs text-slate-400 font-medium mb-4">{demo.subtitulo}</p>
+                  
+                  <p className="text-slate-400 text-xs leading-relaxed mb-6 font-light">
+                    {demo.descripcion}
+                  </p>
 
-                <a
-                  href={demo.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-white/10 hover:border-cyan-500/40 text-xs font-bold text-cyan-400 flex items-center justify-center gap-2 transition-all group"
-                >
-                  <span>Probar Demo En Vivo</span>
-                  <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </a>
-              </SpotlightCard>
-            ))}
+                  <a
+                    href={demo.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-full mt-auto py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-white/10 hover:border-cyan-500/40 text-xs font-bold text-cyan-400 flex items-center justify-center gap-2 transition-all group"
+                  >
+                    <span>Probar Demo En Vivo</span>
+                    <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
+                </SpotlightCard>
+              );
+            })}
           </div>
         </ScrollReveal>
       </section>
@@ -197,7 +208,7 @@ export const App = () => {
                 Arquitectura Moderna & Procesos de IA
               </h2>
               <p className="text-slate-400 text-sm leading-relaxed mb-8">
-                Nuestras soluciones escalan desde portales corporativos hasta sistemas de Inteligencia Artificial para el análisis de datos gubernamentales, garantizando disponibilidad del 99.9% y protección contra ciberataques.
+                Nuestras soluciones escalan desde portales corporativos hasta sistemas de Inteligencia Artificial para el análisis de datos gubernamentales, garantizando disponibilidad y máxima seguridad.
               </p>
 
               <div className="space-y-4">
@@ -232,15 +243,15 @@ export const App = () => {
                 <div className="space-y-4 font-mono text-xs">
                   <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between items-center">
                     <span className="text-slate-400">Modelos Base de IA:</span>
-                    <span className="text-blue-400 font-bold">NLP & Vision</span>
+                    <span className="text-blue-400 font-bold">NLP & Machine Learning</span>
                   </div>
                   <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between items-center">
                     <span className="text-slate-400">Seguridad Institucional:</span>
-                    <span className="text-cyan-400 font-bold">Grade A+ SSL</span>
+                    <span className="text-cyan-400 font-bold">Grade A+ SSL / Encriptación</span>
                   </div>
                   <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between items-center">
-                    <span className="text-slate-400">Stack de Base de Datos:</span>
-                    <span className="text-slate-200 font-bold">PostgreSQL / SQL</span>
+                    <span className="text-slate-400">Stack Base de Datos:</span>
+                    <span className="text-slate-200 font-bold">PostgreSQL / Supabase</span>
                   </div>
                 </div>
               </div>
@@ -262,22 +273,15 @@ export const App = () => {
                 </span>
               </div>
               
-              {/* INTEGRACIÓN DE IMAGEN LOCAL CORPORATIVA (MEDIO CUERPO) */}
               <div className="flex flex-col sm:flex-row gap-8 items-center sm:items-start mb-8 text-center sm:text-left">
-                
-                {/* Contenedor tipo retrato corporativo */}
                 <div className="relative shrink-0 w-48 sm:w-56">
-                  {/* Luz de fondo */}
                   <div className="absolute inset-0 bg-cyan-500/20 blur-2xl rounded-2xl animate-pulse" />
-                  
-                  {/* Imagen de medio cuerpo */}
                   <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-cyan-500/20 bg-slate-900">
                     <img 
                       src={profileImg} 
                       alt="Ing. Dayron Bejarano" 
                       className="w-full h-full object-cover object-top"
                     />
-                    {/* Gradiente sutil en la parte inferior para fusionar con el fondo */}
                     <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-slate-900 to-transparent" />
                   </div>
                 </div>
@@ -295,8 +299,8 @@ export const App = () => {
                 </div>
               </div>
 
-              <p className="text-slate-400 text-sm mb-8 leading-relaxed">
-                He coordinado equipos tecnológicos en instituciones de alto nivel (como ETRAINING S.A.S. y la Universidad Cooperativa de Colombia) liderando proyectos STEAM, IoT e infraestructura de software. DB Tech Studio nace con la capacidad operativa, técnica y legal para ejecutar proyectos del sector privado y licitaciones del gobierno nacional.
+              <p className="text-slate-400 text-sm mb-8 leading-relaxed font-light">
+                DB Tech Studio nace con la capacidad operativa, técnica y legal para ejecutar proyectos del sector privado y licitaciones del gobierno nacional, integrando estándares internacionales de ingeniería.
               </p>
 
               <div className="flex flex-wrap gap-2 mb-8 justify-center sm:justify-start">
@@ -311,7 +315,7 @@ export const App = () => {
             {/* Formulario de Cotización Categorizado */}
             <SpotlightCard className="!p-8 lg:!p-10" glowColor="rgba(0, 242, 254, 0.15)">
               <h3 className="text-2xl font-bold text-white mb-2">Solicitar Requerimiento</h3>
-              <p className="text-sm text-slate-400 mb-8">Selecciona la categoría de desarrollo o licitación para agendar una consultoría técnica.</p>
+              <p className="text-sm text-slate-400 mb-8 font-light">Selecciona la categoría de desarrollo o licitación para agendar una consultoría técnica.</p>
               
               <form className="space-y-5" onSubmit={handleContacto}>
                 <div>
@@ -320,7 +324,7 @@ export const App = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Empresa / Entidad Gubernamental</label>
+                  <label className="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Empresa / Entidad</label>
                   <input type="text" name="entidad" required placeholder="Ej. Ministerio / Alcaldía / Corporación XYZ" className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors" />
                 </div>
 
@@ -328,6 +332,7 @@ export const App = () => {
                   <label className="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">Categoría del Proyecto</label>
                   <select name="categoria" className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500 transition-colors cursor-pointer appearance-none">
                     <option value="Desarrollo Web / E-commerce">🌐 Desarrollo Web Institucional / E-commerce</option>
+                    <option value="Plataforma Médica / Salud">🏥 Plataforma Médica / Salud / Droguería</option>
                     <option value="Automatización e IA Empresarial">🤖 Automatización e IA Empresarial</option>
                     <option value="Software a Medida / SaaS">💻 Desarrollo de Software a Medida / SaaS</option>
                     <option value="Tecnología Educativa / STEAM">🎓 Tecnología Educativa / Proyectos STEAM</option>
