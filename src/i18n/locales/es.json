@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "portfolio": "Portafolio",
+    "stack": "Stack Técnico",
+    "director": "Dirección & Contacto",
+    "quote": "Cotizar Requerimiento"
+  },
+  "hero": {
+    "badge": "SOLUCIONES CORPORATIVAS Y LICITACIONES GUBERNAMENTALES",
+    "title1": "Transformamos Instituciones y Empresas B2B con ",
+    "title2": "Ingeniería de Élite",
+    "desc": "Diseñamos arquitecturas de software, ecosistemas de Inteligencia Artificial y portales institucionales de alto rendimiento. Preparados técnica y jurídicamente para ejecutar contratación pública y privada.",
+    "btn": "Explorar Demos Interactivas"
+  }
+}

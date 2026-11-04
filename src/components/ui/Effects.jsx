@@ -67,3 +67,15 @@ export const GlowingIcon = ({ icon: Icon, colorClass = "text-cyan-400", bgGlow =
     <Icon className={`relative z-10 w-6 h-6 ${colorClass} transition-transform group-hover:scale-110`} />
   </div>
 );
+export const ScrollReveal = ({ children, delay = 0 }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50, rotateX: -10 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, delay, type: "spring", bounce: 0.4 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
