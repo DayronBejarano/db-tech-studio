@@ -13,7 +13,6 @@ import {
   Award, TerminalSquare, Globe2
 } from 'lucide-react';
 
-// IMPORTACIÓN DE TU FOTO LOCAL
 import profileImg from './assets/dayron-profile.jpg';
 
 const DEMOS_COMERCIALES = [
@@ -80,19 +79,16 @@ export const App = () => {
     const entidad = formData.get('entidad');
     const categoria = formData.get('categoria');
     
-    const mensaje = `Hola Ing. Dayron. Soy ${nombre} de ${entidad}.%0A%0AEstoy interesado en la categoría: *${categoria}*.%0A%0A¿Podemos agendar una asesoría técnica para revisar los requerimientos de este proyecto?`;
+    const mensaje = `Hola Ing. Dayron. Soy ${nombre} de ${entidad}.%0A%0AEstoy interesado en la categoría: *${categoria}* [REF: HUB-PORTAFOLIO].%0A%0A¿Podemos agendar una asesoría técnica para revisar los requerimientos?`;
     window.open(`https://wa.me/573104208919?text=${mensaje}`, '_blank');
   };
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
+  const changeLanguage = (lng) => i18n.changeLanguage(lng);
 
   return (
     <div className="min-h-screen bg-[#06080d] text-slate-100 font-sans relative overflow-hidden selection:bg-cyan-500 selection:text-black">
       <AmbientBackground />
 
-      {/* NAVBAR */}
       <header className="relative z-40 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl px-6 py-4 sticky top-0">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -110,7 +106,6 @@ export const App = () => {
             <a href="#stack" className="hover:text-cyan-400 transition-colors">{t('nav.stack', 'Capacidades')}</a>
             <a href="#director" className="hover:text-cyan-400 transition-colors">{t('nav.director', 'Dirección')}</a>
             
-            {/* SWITCH DE IDIOMAS */}
             <div className="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-full border border-white/10">
               <Globe2 className="w-3.5 h-3.5 text-cyan-500" />
               <button onClick={() => changeLanguage('es')} className={`transition-colors font-bold ${i18n.language === 'es' ? 'text-cyan-400' : 'text-slate-500 hover:text-white'}`}>ES</button>
@@ -127,7 +122,6 @@ export const App = () => {
         </div>
       </header>
 
-      {/* HERO SECTION */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-20 text-center">
         <ScrollReveal>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono mb-8 backdrop-blur-md">
@@ -154,7 +148,6 @@ export const App = () => {
         </ScrollReveal>
       </section>
 
-      {/* PORTAFOLIO DE DEMOS INTERACTIVAS (4 COLUMNAS RESPONSIVAS) */}
       <section id="demos" className="relative z-10 max-w-7xl mx-auto px-6 py-20">
         <ScrollReveal>
           <div className="text-center mb-16">
@@ -198,7 +191,6 @@ export const App = () => {
         </ScrollReveal>
       </section>
 
-      {/* STACK TÉCNICO & ESTÁNDARES */}
       <section id="stack" className="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-white/10">
         <ScrollReveal>
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -260,11 +252,9 @@ export const App = () => {
         </ScrollReveal>
       </section>
 
-      {/* SECCIÓN DIRECTOR & CONTACTO CORPORATIVO */}
       <section id="director" className="relative z-10 bg-slate-950/80 border-t border-white/10 py-24">
         <ScrollReveal>
           <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
-            {/* Perfil Profesional */}
             <div>
               <div className="inline-flex items-center gap-2 mb-8">
                 <Award className="w-5 h-5 text-amber-400" />
@@ -305,14 +295,13 @@ export const App = () => {
 
               <div className="flex flex-wrap gap-2 mb-8 justify-center sm:justify-start">
                 {['Desarrollo Web & SaaS', 'Inteligencia Artificial', 'Robótica & IoT', 'Analítica de Datos', 'Proyectos STEAM', 'Contratación Pública'].map((skill, idx) => (
-                  <span key={idx} className="bg-slate-900 border border-slate-800 text-cyan-300 py-1.5 px-4 rounded-full text-xs font-medium transition-colors hover:bg-slate-800 hover:text-white cursor-default">
+                  <span key={idx} className="bg-slate-900 border border-slate-800 text-cyan-300 py-1.5 px-4 rounded-full text-xs font-medium hover:bg-slate-800 hover:text-white cursor-default">
                     {skill}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* Formulario de Cotización Categorizado */}
             <SpotlightCard className="!p-8 lg:!p-10" glowColor="rgba(0, 242, 254, 0.15)">
               <h3 className="text-2xl font-bold text-white mb-2">Solicitar Requerimiento</h3>
               <p className="text-sm text-slate-400 mb-8 font-light">Selecciona la categoría de desarrollo o licitación para agendar una consultoría técnica.</p>
@@ -353,7 +342,6 @@ export const App = () => {
         </ScrollReveal>
       </section>
 
-      {/* FOOTER */}
       <footer className="relative z-10 border-t border-white/10 bg-slate-950 px-6 py-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
