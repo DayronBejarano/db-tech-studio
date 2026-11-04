@@ -63,10 +63,26 @@ const DEMOS_COMERCIALES = [
 ];
 
 const STACK_TECNOLOGICO = [
-  { icon: TerminalSquare, nombre: 'React 18, Vite & Python', desc: 'Desarrollo Full Stack y Single Page Applications de ultra-alta velocidad.' },
-  { icon: BrainCircuit, nombre: 'Inteligencia Artificial & Datos', desc: 'Automatización con IA, Machine Learning, Analítica Predictiva y Dashboards.' },
-  { icon: Landmark, nombre: 'Infraestructura Gubernamental', desc: 'Sistemas seguros adaptados para licitaciones y contratación pública (SECOP I+D).' },
-  { icon: Cpu, nombre: 'IoT & Proyectos STEAM', desc: 'Prototipado electrónico (Arduino/ESP32), robótica e innovación tecnológica.' }
+  { 
+    icon: TerminalSquare, 
+    nombre: 'React 18, Vite & Python', 
+    desc: 'Desarrollo Full Stack y Single Page Applications de ultra-alta velocidad y cero deuda técnica.' 
+  },
+  { 
+    icon: BrainCircuit, 
+    nombre: 'Inteligencia Artificial & Datos', 
+    desc: 'Automatización con IA, Machine Learning, Analítica Predictiva y Dashboards de inteligencia de negocios.' 
+  },
+  { 
+    icon: Landmark, 
+    nombre: 'Infraestructura Gubernamental', 
+    desc: 'Sistemas seguros adaptados para licitaciones y requerimientos de contratación pública (SECOP I+D).' 
+  },
+  { 
+    icon: Cpu, 
+    nombre: 'IoT & Proyectos STEAM', 
+    desc: 'Prototipado electrónico (Arduino/ESP32), robótica, automatización industrial e innovación tecnológica.' 
+  }
 ];
 
 export const App = () => {
@@ -79,7 +95,7 @@ export const App = () => {
     const entidad = formData.get('entidad');
     const categoria = formData.get('categoria');
     
-    const mensaje = `Hola Ing. Dayron. Soy ${nombre} de ${entidad}.%0A%0AEstoy interesado en la categoría: *${categoria}* [REF: HUB-PORTAFOLIO].%0A%0A¿Podemos agendar una asesoría técnica para revisar los requerimientos?`;
+    const mensaje = `Hola Ing. Dayron. Soy ${nombre} de ${entidad}.%0A%0AEstoy interesado en la categoría: *${categoria}* [REF: HUB-PORTAFOLIO].%0A%0A¿Podemos agendar una asesoría técnica para revisar los requerimientos de nuestra empresa?`;
     window.open(`https://wa.me/573104208919?text=${mensaje}`, '_blank');
   };
 
@@ -89,14 +105,24 @@ export const App = () => {
     <div className="min-h-screen bg-[#06080d] text-slate-100 font-sans relative overflow-hidden selection:bg-cyan-500 selection:text-black">
       <AmbientBackground />
 
+      {/* HEADER DE LA AGENCIA */}
       <header className="relative z-40 border-b border-white/10 bg-slate-950/70 backdrop-blur-xl px-6 py-4 sticky top-0">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-cyan-500/20 border border-white/10 bg-slate-900 flex items-center justify-center">
-              <img src="/logo.png" alt="DB Tech Studio Logo" className="w-full h-full object-cover" />
+            <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-cyan-500/20 border border-white/10 bg-slate-900 flex items-center justify-center shrink-0">
+              <img 
+                src="/logo.png" 
+                alt="DB Tech Studio Logo" 
+                className="w-full h-full object-cover" 
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.parentElement.innerText = 'DB';
+                  e.target.parentElement.className = "w-10 h-10 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center text-white font-black text-sm shrink-0";
+                }}
+              />
             </div>
             <div>
-              <span className="text-lg font-bold tracking-tight text-white block">DB Tech Studio</span>
+              <span className="text-lg font-bold tracking-tight text-white block leading-none">DB Tech Studio</span>
               <span className="text-[10px] text-cyan-400 font-mono tracking-widest uppercase">Arquitectura & IA</span>
             </div>
           </div>
@@ -106,6 +132,7 @@ export const App = () => {
             <a href="#stack" className="hover:text-cyan-400 transition-colors">{t('nav.stack', 'Capacidades')}</a>
             <a href="#director" className="hover:text-cyan-400 transition-colors">{t('nav.director', 'Dirección')}</a>
             
+            {/* SWITCHER DE IDIOMAS */}
             <div className="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-full border border-white/10">
               <Globe2 className="w-3.5 h-3.5 text-cyan-500" />
               <button onClick={() => changeLanguage('es')} className={`transition-colors font-bold ${i18n.language === 'es' ? 'text-cyan-400' : 'text-slate-500 hover:text-white'}`}>ES</button>
@@ -122,6 +149,7 @@ export const App = () => {
         </div>
       </header>
 
+      {/* HERO SECTION */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-20 text-center">
         <ScrollReveal>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-mono mb-8 backdrop-blur-md">
@@ -136,7 +164,7 @@ export const App = () => {
             </span>
           </h1>
 
-          <p className="text-slate-400 text-base md:text-xl max-w-3xl mx-auto leading-relaxed mb-12">
+          <p className="text-slate-400 text-base md:text-xl max-w-3xl mx-auto leading-relaxed mb-12 font-light">
             {t('hero.desc', 'Desarrollo de ecosistemas digitales, automatizaciones inteligentes e infraestructura de software para corporaciones y sector público.')}
           </p>
 
@@ -148,11 +176,15 @@ export const App = () => {
         </ScrollReveal>
       </section>
 
+      {/* GRILLA DE DEMOS B2B */}
       <section id="demos" className="relative z-10 max-w-7xl mx-auto px-6 py-20">
         <ScrollReveal>
           <div className="text-center mb-16">
             <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest block mb-2">Ecosistema de Prospección B2B</span>
             <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">Plataformas Específicas por Sector</h2>
+            <p className="text-slate-400 text-sm mt-3 font-light max-w-xl mx-auto">
+              Cada prototipo está adaptado operacionalmente para atender requerimientos de clientes corporativos en industrias estratégicas.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -191,6 +223,7 @@ export const App = () => {
         </ScrollReveal>
       </section>
 
+      {/* SECCIÓN CAPACIDADES & STACK TECNOLÓGICO */}
       <section id="stack" className="relative z-10 max-w-7xl mx-auto px-6 py-20 border-t border-white/10">
         <ScrollReveal>
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -199,7 +232,7 @@ export const App = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-6">
                 Arquitectura Moderna & Procesos de IA
               </h2>
-              <p className="text-slate-400 text-sm leading-relaxed mb-8">
+              <p className="text-slate-400 text-sm leading-relaxed mb-8 font-light">
                 Nuestras soluciones escalan desde portales corporativos hasta sistemas de Inteligencia Artificial para el análisis de datos gubernamentales, garantizando disponibilidad y máxima seguridad.
               </p>
 
@@ -208,12 +241,12 @@ export const App = () => {
                   const Icon = st.icon;
                   return (
                     <div key={i} className="flex items-start gap-4 bg-slate-900/50 p-4 rounded-xl border border-white/10 backdrop-blur-md transition-colors hover:bg-slate-900/80">
-                      <div className="bg-slate-950 p-2 rounded-lg border border-white/5">
+                      <div className="bg-slate-950 p-2.5 rounded-lg border border-white/5 shrink-0">
                         <Icon className="w-5 h-5 text-cyan-400" />
                       </div>
                       <div>
                         <span className="text-sm font-bold text-white block mb-0.5">{st.nombre}</span>
-                        <span className="text-xs text-slate-400 leading-relaxed">{st.desc}</span>
+                        <span className="text-xs text-slate-400 leading-relaxed font-light">{st.desc}</span>
                       </div>
                     </div>
                   );
@@ -233,15 +266,15 @@ export const App = () => {
                 </div>
 
                 <div className="space-y-4 font-mono text-xs">
-                  <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between items-center">
+                  <div className="bg-slate-950/80 p-3.5 rounded-xl border border-white/5 flex justify-between items-center">
                     <span className="text-slate-400">Modelos Base de IA:</span>
                     <span className="text-blue-400 font-bold">NLP & Machine Learning</span>
                   </div>
-                  <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between items-center">
+                  <div className="bg-slate-950/80 p-3.5 rounded-lg border border-white/5 flex justify-between items-center">
                     <span className="text-slate-400">Seguridad Institucional:</span>
                     <span className="text-cyan-400 font-bold">Grade A+ SSL / Encriptación</span>
                   </div>
-                  <div className="bg-slate-950/80 p-3 rounded-lg border border-white/5 flex justify-between items-center">
+                  <div className="bg-slate-950/80 p-3.5 rounded-lg border border-white/5 flex justify-between items-center">
                     <span className="text-slate-400">Stack Base de Datos:</span>
                     <span className="text-slate-200 font-bold">PostgreSQL / Supabase</span>
                   </div>
@@ -252,6 +285,7 @@ export const App = () => {
         </ScrollReveal>
       </section>
 
+      {/* SECCIÓN DIRECCIÓN TÉCNICA & FORMULARIO CONVERSIÓN */}
       <section id="director" className="relative z-10 bg-slate-950/80 border-t border-white/10 py-24">
         <ScrollReveal>
           <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-start">
@@ -283,8 +317,8 @@ export const App = () => {
                   <p className="text-cyan-400 font-mono text-xs uppercase tracking-wider mb-4">
                     Ing. Dayron Andrés Bejarano Pérez
                   </p>
-                  <p className="text-slate-300 text-sm leading-relaxed">
-                    Especialista en Desarrollo Full Stack, Analítica Predictiva de Datos y ecosistemas de Innovación.
+                  <p className="text-slate-300 text-sm leading-relaxed font-light">
+                    Especialista en Desarrollo Full Stack, Analítica Predictiva de Datos y ecosistemas de Innovación tecnológica.
                   </p>
                 </div>
               </div>
@@ -342,10 +376,11 @@ export const App = () => {
         </ScrollReveal>
       </section>
 
+      {/* FOOTER INSTITUCIONAL */}
       <footer className="relative z-10 border-t border-white/10 bg-slate-950 px-6 py-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg overflow-hidden border border-white/10 bg-slate-900 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg overflow-hidden border border-white/10 bg-slate-900 flex items-center justify-center shrink-0">
               <img src="/logo.png" alt="DB Tech Studio Logo" className="w-full h-full object-cover" />
             </div>
             <div>
