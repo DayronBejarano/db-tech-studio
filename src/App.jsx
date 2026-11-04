@@ -80,7 +80,7 @@ export const App = () => {
     const entidad = formData.get('entidad');
     const categoria = formData.get('categoria');
     
-    const mensaje = `Hola Ing. Dayron. Soy ${nombre} de ${entidad}.%0A%0AEstoy interesado en la categoría: *${categoria}*.%0A%0A¿Podemos agendar una asesoría técnica para revisar los requerimientos de este proyecto?`;
+    const msgHub = `Hola Ing. Dayron. Estoy navegando en el portal de DB Tech Studio [REF: HUB-PORTAFOLIO] y me interesa cotizar un desarrollo de software.`;
     window.open(`https://wa.me/573104208919?text=${mensaje}`, '_blank');
   };
 
