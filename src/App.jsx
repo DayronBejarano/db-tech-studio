@@ -10,9 +10,12 @@ import {
 } from './components/ui/Effects';
 import { 
   Sparkles, Building2, Scale, Truck, ExternalLink, Cpu, 
-  Rocket, ArrowRight, CheckCircle2, Landmark, BrainCircuit, 
+  Rocket, ArrowRight, Landmark, BrainCircuit, 
   Award, TerminalSquare, Globe2
 } from 'lucide-react';
+
+// IMPORTACIÓN DE TU FOTO LOCAL
+import profileImg from './assets/dayron-profile.jpg';
 
 const DEMOS_COMERCIALES = [
   {
@@ -67,8 +70,9 @@ export const App = () => {
     const entidad = formData.get('entidad');
     const categoria = formData.get('categoria');
     
+    // Aquí puedes cambiar el número por el tuyo en formato internacional, ej: 57310XXXXXXX
     const mensaje = `Hola Ing. Dayron. Soy ${nombre} de ${entidad}.%0A%0AEstoy interesado en la categoría: *${categoria}*.%0A%0A¿Podemos agendar una asesoría técnica para revisar los requerimientos de este proyecto?`;
-    window.open(`https://wa.me/573100000000?text=${mensaje}`, '_blank'); // Reemplaza con tu número
+    window.open(`https://wa.me/573100000000?text=${mensaje}`, '_blank');
   };
 
   const changeLanguage = (lng) => {
@@ -101,11 +105,11 @@ export const App = () => {
             {/* SWITCH DE IDIOMAS */}
             <div className="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-full border border-white/10">
               <Globe2 className="w-3.5 h-3.5 text-cyan-500" />
-              <button onClick={() => changeLanguage('es')} className={`transition-colors ${i18n.language === 'es' ? 'text-white' : 'text-slate-500'}`}>ES</button>
+              <button onClick={() => changeLanguage('es')} className={`transition-colors font-bold ${i18n.language === 'es' ? 'text-cyan-400' : 'text-slate-500 hover:text-white'}`}>ES</button>
               <span className="text-slate-700">|</span>
-              <button onClick={() => changeLanguage('en')} className={`transition-colors ${i18n.language === 'en' ? 'text-white' : 'text-slate-500'}`}>EN</button>
+              <button onClick={() => changeLanguage('en')} className={`transition-colors font-bold ${i18n.language === 'en' ? 'text-cyan-400' : 'text-slate-500 hover:text-white'}`}>EN</button>
               <span className="text-slate-700">|</span>
-              <button onClick={() => changeLanguage('pt')} className={`transition-colors ${i18n.language === 'pt' ? 'text-white' : 'text-slate-500'}`}>PT</button>
+              <button onClick={() => changeLanguage('pt')} className={`transition-colors font-bold ${i18n.language === 'pt' ? 'text-cyan-400' : 'text-slate-500 hover:text-white'}`}>PT</button>
             </div>
           </div>
 
@@ -200,7 +204,7 @@ export const App = () => {
                 {STACK_TECNOLOGICO.map((st, i) => {
                   const Icon = st.icon;
                   return (
-                    <div key={i} className="flex items-start gap-4 bg-slate-900/50 p-4 rounded-xl border border-white/10 backdrop-blur-md">
+                    <div key={i} className="flex items-start gap-4 bg-slate-900/50 p-4 rounded-xl border border-white/10 backdrop-blur-md transition-colors hover:bg-slate-900/80">
                       <div className="bg-slate-950 p-2 rounded-lg border border-white/5">
                         <Icon className="w-5 h-5 text-cyan-400" />
                       </div>
@@ -258,12 +262,12 @@ export const App = () => {
                 </span>
               </div>
               
-              {/* INTEGRACIÓN DE IMAGEN GITHUB CON GLASSMORPHISM */}
+              {/* INTEGRACIÓN DE IMAGEN LOCAL CON GLASSMORPHISM */}
               <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start mb-8 text-center sm:text-left">
                 <div className="relative shrink-0">
                   <div className="absolute inset-0 bg-cyan-500/20 blur-xl rounded-full animate-pulse" />
                   <img 
-                    src="https://github.com/DayronBejarano.png" 
+                    src={profileImg} 
                     alt="Ing. Dayron Bejarano" 
                     className="relative w-28 h-28 md:w-32 md:h-32 rounded-full border-2 border-cyan-500/30 object-cover shadow-2xl shadow-cyan-500/20"
                   />
@@ -287,7 +291,7 @@ export const App = () => {
 
               <div className="flex flex-wrap gap-2 mb-8 justify-center sm:justify-start">
                 {['Desarrollo Web & SaaS', 'Inteligencia Artificial', 'Robótica & IoT', 'Analítica de Datos', 'Proyectos STEAM', 'Contratación Pública'].map((skill, idx) => (
-                  <span key={idx} className="bg-slate-900 border border-slate-800 text-cyan-300 py-1.5 px-4 rounded-full text-xs font-medium">
+                  <span key={idx} className="bg-slate-900 border border-slate-800 text-cyan-300 py-1.5 px-4 rounded-full text-xs font-medium transition-colors hover:bg-slate-800 hover:text-white cursor-default">
                     {skill}
                   </span>
                 ))}
@@ -338,7 +342,9 @@ export const App = () => {
       <footer className="relative z-10 border-t border-white/10 bg-slate-950 px-6 py-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="bg-blue-600 p-2 rounded-lg text-white font-black text-lg">DB</div>
+            <div className="w-8 h-8 rounded-lg overflow-hidden border border-white/10 bg-slate-900 flex items-center justify-center">
+              <img src="/logo.png" alt="DB Tech Studio Logo" className="w-full h-full object-cover" />
+            </div>
             <div>
               <span className="text-sm font-bold text-white block">DB Tech Studio</span>
               <span className="text-xs text-slate-500">Ing. Dayron Bejarano • Director de Tecnología</span>
