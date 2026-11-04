@@ -23,7 +23,7 @@ const DEMOS_COMERCIALES = [
     titulo: 'Valenzuela & Asociados',
     subtitulo: 'Firma Legal Boutique & M&A',
     sector: 'Legal & Corporativo',
-    url: 'https://demo-abogados.vercel.app/',
+    url: 'https://demo-abogados-brown.vercel.app/',
     icon: Scale,
     glow: 'rgba(251, 191, 36, 0.25)',
     badge: 'Alto Margen B2B',
